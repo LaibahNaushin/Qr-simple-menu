@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dish Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 17px;
+            transition: background-color 0.3s;
+        }
+        .navbar a:hover {
+            background-color: #575757;
+        }
+        .navbar a.active {
+            background-color: #4CAF50;
+        }
+        .navbar .icon {
+            display: none;
+        }
+
+        .menu-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        .menu-list li {
+            display: inline-block;
+            margin: 10px 20px;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .menu-list li:hover {
+            transform: scale(1.05);
+            background-color: #f1f1f1;
+        }
+
+        .search-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .search-container input {
+            padding: 10px;
+            width: 300px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .search-container button {
+            padding: 10px 15px;
+            margin-left: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .search-container button:hover {
+            background-color: #45a049;
+        }
+
+        @media screen and (max-width: 600px) {
+            .navbar a {float: none; display: block; text-align: left;}
+            .navbar a.icon {
+                float: right;
+                display: block;
+            }
+            .menu-list li {
+                display: block;
+                margin: 10px auto;
+            }
+        }
+        body{
+            background-color: rgba(178, 34, 34, 0.921);
+        }
+       
+        
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="#home" class="active">Home</a>
+        <a href="#menu">Menu</a>
+        <a href="#about">About Us</a>
+        <a href="#contact">Contact</a>
+        <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
+            &#9776;
+        </a>
+    </div>
+
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search for dishes..." onkeyup="filterMenu()">
+        <button onclick="filterMenu()">Search</button>
+    </div>
+
+    <div id="menu" style="padding: 30px;">
+        <h2 style="text-align: center;">Our Delicious Menu</h2>
+        <ul class="menu-list" id="menuList">
+            <li >Paneer Butter Masala</li>
+            <li>Butter Chicken</li>
+            <li>Chole Bhature</li>
+            <li>Vegetable Biryani</li>
+            <li>Dal Makhani</li>
+            <li>Chicken Tikka</li>
+            <li>Masala Dosa</li>
+            <li>Gulab Jamun</li>
+        </ul>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            var x = document.getElementsByClassName("navbar")[0];
+            if (x.className === "navbar") {
+                x.className += " responsive";
+            } else {
+                x.className = "navbar";
+            }
+        }
+
+        function filterMenu() {
+            let input = document.getElementById("searchInput").value.toLowerCase();
+            let menuItems = document.getElementById("menuList").getElementsByTagName("li");
+
+            for (let i = 0; i < menuItems.length; i++) {
+                let item = menuItems[i].textContent.toLowerCase();
+                if (item.indexOf(input) > -1) {
+                    menuItems[i].style.display = "";
+                } else {
+                    menuItems[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
+
+
